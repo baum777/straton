@@ -1,0 +1,38 @@
+{
+  "name": "straton",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "STRATON v1 (OfferFlow™) — strategy in motion",
+  "scripts": {
+    "build": "npm run build -w packages/domain && npm run build -w packages/policy && npm run build -w packages/review && npm run build -w packages/audit && npm run build -w apps/api && npm run build -w apps/web",
+    "build:packages": "npm run build -w packages/domain && npm run build -w packages/policy && npm run build -w packages/review && npm run build -w packages/audit",
+    "build:api": "npm run build -w apps/api",
+    "build:web": "npm run build -w apps/web",
+    "test": "vitest run",
+    "test:domain": "npm run test -w packages/domain",
+    "test:policy": "npm run test -w packages/policy",
+    "test:review": "npm run test -w packages/review",
+    "test:audit": "npm run test -w packages/audit",
+    "test:api": "npm run test -w apps/api",
+    "test:web": "npm run test -w apps/web",
+    "lint": "npm run lint --workspaces --if-present",
+    "lint:fix": "npm run lint:fix --workspaces --if-present",
+    "dev:api": "npm run dev -w apps/api",
+    "dev:web": "npm run dev -w apps/web",
+    "db:migrate": "node scripts/migrate.js",
+    "db:drift-check": "node scripts/drift-check.js"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "typescript-eslint": "^8.17.0",
+    "vitest": "^2.1.6"
+  }
+}
