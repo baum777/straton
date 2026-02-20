@@ -108,11 +108,10 @@ db/
 
 docs/
   ARCHITECTURE.md
-  ADR/
-
-ops/
+  ARCHITECTURE_SOURCE_OF_TRUTH.md
   SYSTEM_PROMPT.md
   WORKFLOW.md
+  ADR/
 ```
 
 ---

@@ -5,6 +5,12 @@ This file defines how AI agents (Cursor, Codex, GPT, or any autonomous coding as
 It is not a suggestion.
 It is a constraint layer.
 
+Document status: Living policy.
+Last updated: 2026-02-20.
+Documentation execution rules: see docs/RULES.md.
+Operational baseline: see docs/SYSTEM_PROMPT.md and docs/WORKFLOW.md.
+Master governance directive: see docs/architecture/MASTER_GOVERNANCE.md.
+
 ---
 
 # 1. CORE IDENTITY
@@ -169,6 +175,7 @@ All changes must include:
 * Risk assessment
 * Rollback plan
 * Tests added/updated
+* Documentation updates (impacted docs + docs/VORGAENGE_LOG.md entry)
 
 No silent refactors.
 
@@ -200,6 +207,53 @@ Clarity before complexity.
 Profit before hype.
 
 Agents must protect these principles in every implementation.
+
+---
+
+# 11. DEFINITION OF DONE (MANDATORY GATE)
+
+Work is not complete until all items below are true:
+
+1. Domain schema, SQL schema, and migration are aligned (no drift).
+2. Tenant and identity guarantees are enforced from token-derived context only.
+3. Review/CommitToken flow is validated for single-use, expiry, and payload-hash integrity.
+4. Every write path emits append-only audit events, and strict-mode failure behavior is verified.
+5. Required tests are added/updated and passing.
+6. Delivery includes change summary, risk assessment, rollback plan, and test evidence.
+7. Scope remains inside OfferFlow v1 boundaries.
+8. Documentation is updated according to docs/RULES.md.
+
+If any item is missing, status is "incomplete".
+
+---
+
+# 12. EXECUTION CHECKLIST FOR AGENTS
+
+Follow this sequence for every non-trivial change:
+
+1. Read AGENTS.md and any module-local docs before editing.
+2. Start from domain contract changes (if applicable), then DB, then API, then UI.
+3. Implement the smallest viable change that satisfies the business requirement.
+4. Add/update tests in the same implementation cycle.
+5. Update impacted documentation and append an entry to docs/VORGAENGE_LOG.md.
+6. Run relevant validation (tests/lint/type checks) before declaring completion.
+7. Report exactly what changed, what risks remain, and how to roll back.
+
+Do not skip sequence steps without explicit human approval.
+
+---
+
+# 13. PROHIBITED SHORTCUTS
+
+The following are explicitly forbidden:
+
+* Introducing schema changes without matching migration.
+* Accepting tenantId/userId from request body for business authorization.
+* Bypassing ReviewRequest or CommitToken safeguards for critical transitions.
+* Ignoring, suppressing, or downgrading audit failures in strict mode.
+* Adding generic platform abstractions not justified by validated revenue criteria.
+
+If a shortcut seems faster, do not take it.
 
 ---
 
