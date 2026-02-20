@@ -1,0 +1,126 @@
+# STRATON v1 (OfferFlow™) — Cursor Rules & Governance (v1.1)
+
+These rules are the supreme operating constraints for Cursor / Composer / AI-assisted work in this repository.
+
+---
+
+## 🤖 AI Model Roles
+
+* **Lead (Architect/Strategy): GPT-5.2**
+
+  * Use for: architectural decisions, complex logic, planning.
+* **Implementation (Coding): Composer 1.5**
+
+  * Use for: generating code, refactors, repo-wide diffs.
+* **Debugging (Analysis): Gemini 3 Pro**
+
+  * Use for: error log analysis, deep documentation scanning.
+
+---
+
+## 🏗 Project Architecture & Facts
+
+* **Stack:** Node.js / TypeScript monorepo (`apps/*`, `packages/*`).
+* **Database:** PostgreSQL (single source of truth).
+* **Security:** Stateless JWT + RBAC (Owner, Admin, Operator, Reviewer, Viewer).
+* **Core Flow:** OfferFlow™ (Intake → Scope → Draft → Review → Commit).
+* **Constraint:** **No write without audit** (Strict Mode). If audit insert fails, the transaction must fail.
+
+---
+
+## 📜 Implementation Rules (Strict Adherence)
+
+### 1) Global Auth Requirement 🛡️
+
+* **Rule:** EVERY endpoint MUST require valid JWT authentication.
+* **Exception:** Only the `/health` endpoint may be public.
+* **Constraint:** No anonymous business logic, no guest access, no MVP bypass.
+
+---
+
+### 2) Domain-Driven Design (Contract First)
+
+* **Rule:** All domain changes MUST start in `packages/domain` (Zod schemas + enums).
+
+* **Workflow (mandatory order):**
+
+  1. Update Zod schema (`packages/domain`)
+  2. Update `db/schema.sql`
+  3. Generate migration in `db/migrations/`
+  4. Implement API/service logic
+  5. Add/Update tests
+
+* **No Drift:** DB schema must match domain contracts **1:1**.
+
+---
+
+### 3) Security & Multi-Tenancy
+
+* **Isolation:** Every query MUST be tenant-scoped (`WHERE tenant_id = ...`).
+* **Context:** Never trust `userId` or `tenant_id` from request body/headers.
+
+  * Always derive identity and tenant context from verified JWT RequestContext.
+
+---
+
+### 4) ReviewGate & CommitToken Logic
+
+* **Rule:** Draft creation is allowed without review.
+* **Rule:** Irreversible transitions (e.g., Offer Commit / Finalization) require ReviewGate + CommitToken.
+
+**CommitToken requirements:**
+
+* Single-use
+* Atomic `used_at` update
+* Expiry check
+* Payload hash validation
+* Replay must be impossible
+* Expiry must be enforced (service-level validation + guarded DB update)
+
+---
+
+### 5) Audit Logging (Strict Mode)
+
+* **Mandatory:** Every state-changing operation (Write) must produce an audit log.
+* **Append-only:** Audit logs are immutable.
+* **Failure Handling:** If audit insert fails → the business operation must rollback (transaction fails).
+
+---
+
+## 🧪 Testing Requirements
+
+### CommitToken tests (mandatory)
+
+* **Expiry validation:** Token must fail if `now() > expires_at`.
+* **Payload hash mismatch:** Reject commit if current payload hash ≠ stored payload hash.
+* **Replay prevention:** Second use of the same token MUST fail.
+
+### Audit assertion tests (mandatory)
+
+* Verify a **Write-Fail** occurs if the audit insert fails.
+
+### Multi-tenancy tests (mandatory)
+
+* Cross-tenant access MUST fail.
+
+---
+
+## ✅ Definition of Done (v1)
+
+A feature is **COMPLETE** only if:
+
+1. **Alignment:** Domain (Zod) and DB (SQL) are 100% aligned.
+2. **Auth:** JWT enforcement is active and verified for the endpoint.
+3. **Isolation:** Tenant isolation is tested (cross-tenant access fails).
+4. **Hardening:** CommitToken replay + expiry tests are green.
+5. **Audit:** Audit assertions are passing (no write without audit).
+6. **Zero Drift:** No schema/enum drift between code and database.
+
+---
+
+## 🚫 Constraints (What NOT to do)
+
+* NO Self-Registration flow.
+* NO OAuth / NO SSO in v1.
+* NO framework-building or unscoped feature expansion.
+* NO "lazy coding": never skip Zod validation, RBAC checks, ReviewGate, or Audit hooks.
