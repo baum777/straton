@@ -35,3 +35,12 @@ Risiko: Niedrig (Dokumentationsstruktur geaendert; moegliche Pfadannahmen in ext
 Rollback: Dateien zurueck ins Root verschieben bzw. Commit revertieren.
 Tests/Verifikation: Dateipfade und Inhalte manuell geprueft, Root-Dateien entfernt.
 ---
+
+Datum: 2026-02-20
+Autor/Agent: Cursor Cloud Agent
+Vorgang: Neues Master-Governance-Dokument unter docs/architecture erstellt und in AGENTS.md verlinkt.
+Betroffene Dateien: docs/architecture/MASTER_GOVERNANCE.md, AGENTS.md, docs/VORGAENGE_LOG.md
+Risiko: Niedrig (Dokumentationsaenderung; keine Laufzeitlogik betroffen).
+Rollback: Commit revertieren oder Dateien gezielt rueckgaengig machen.
+Tests/Verifikation: Inhalt, Pfad und AGENTS-Verweis manuell verifiziert.
+---

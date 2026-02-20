@@ -9,6 +9,7 @@ Document status: Living policy.
 Last updated: 2026-02-20.
 Documentation execution rules: see docs/RULES.md.
 Operational baseline: see docs/SYSTEM_PROMPT.md and docs/WORKFLOW.md.
+Master governance directive: see docs/architecture/MASTER_GOVERNANCE.md.
 
 ---
 
