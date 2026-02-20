@@ -7,6 +7,7 @@ It is a constraint layer.
 
 Document status: Living policy.
 Last updated: 2026-02-20.
+Documentation execution rules: see docs/RULES.md.
 
 ---
 
@@ -172,6 +173,7 @@ All changes must include:
 * Risk assessment
 * Rollback plan
 * Tests added/updated
+* Documentation updates (impacted docs + docs/VORGAENGE_LOG.md entry)
 
 No silent refactors.
 
@@ -217,6 +219,7 @@ Work is not complete until all items below are true:
 5. Required tests are added/updated and passing.
 6. Delivery includes change summary, risk assessment, rollback plan, and test evidence.
 7. Scope remains inside OfferFlow v1 boundaries.
+8. Documentation is updated according to docs/RULES.md.
 
 If any item is missing, status is "incomplete".
 
@@ -230,8 +233,9 @@ Follow this sequence for every non-trivial change:
 2. Start from domain contract changes (if applicable), then DB, then API, then UI.
 3. Implement the smallest viable change that satisfies the business requirement.
 4. Add/update tests in the same implementation cycle.
-5. Run relevant validation (tests/lint/type checks) before declaring completion.
-6. Report exactly what changed, what risks remain, and how to roll back.
+5. Update impacted documentation and append an entry to docs/VORGAENGE_LOG.md.
+6. Run relevant validation (tests/lint/type checks) before declaring completion.
+7. Report exactly what changed, what risks remain, and how to roll back.
 
 Do not skip sequence steps without explicit human approval.
 
