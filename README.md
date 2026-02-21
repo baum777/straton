@@ -11,6 +11,7 @@ strategy in motion
 | `docs/SYSTEM_PROMPT.md` | Lead Implementation Engineer context |
 | `docs/WORKFLOW.md` | Mandatory implementation workflow |
 | `docs/ARCHITECTURE_SOURCE_OF_TRUTH.md` | Architecture + build plan |
+| `docs/DOCS_BLUEPRINT_SPEC.md` | Spec for docs structure, logic, and agent handling |
 | `docs/RULES.md` | Documentation obligations |
 | `docs/VORGAENGE_LOG.md` | Append-only change log |
 | `docs/ALIGNMENT_RUN_PLAN.md` | Alignment run plan (reference) |

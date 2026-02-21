@@ -53,3 +53,12 @@ Risiko: Niedrig (Struktur- und Dokuänderungen; keine Laufzeitlogik).
 Rollback: Commit revertieren oder neue Dateien/Ordner entfernen.
 Tests/Verifikation: rg "ops/" in .md → 0 Treffer; Ordnerstruktur verifiziert; npm ls prüft Workspaces.
 ---
+
+Datum: 2026-02-21
+Autor/Agent: Cursor Cloud Agent
+Vorgang: Neue Blueprint-Spezifikation fuer die Repo-Dokumentation erstellt; definiert verbindlich Struktur, Aenderungslogik und Agent-Handling. README-Dokuhierarchie um die neue Spezifikation erweitert.
+Betroffene Dateien: docs/DOCS_BLUEPRINT_SPEC.md (neu), README.md, docs/VORGAENGE_LOG.md
+Risiko: Niedrig (reine Dokumentationsaenderung ohne Laufzeiteffekt).
+Rollback: Letzten Commit revertieren oder die neue Datei entfernen und README/Logeintrag rueckgaengig machen.
+Tests/Verifikation: Inhalte gegen docs/RULES.md, AGENTS.md und MASTER_GOVERNANCE auf Konsistenz geprueft; Markdown-Struktur manuell verifiziert.
+---
