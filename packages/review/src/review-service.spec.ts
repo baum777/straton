@@ -61,10 +61,10 @@ describe('ReviewService (Review Core)', () => {
 
   beforeEach(async () => {
     try {
-      await pool.query('TRUNCATE review_requests, audit_log_entries');
+      await pool.query('TRUNCATE review_requests, audit_logs');
     } catch {
       await pool.query(schemaSql);
-      await pool.query('TRUNCATE review_requests, audit_log_entries');
+      await pool.query('TRUNCATE review_requests, audit_logs');
     }
   });
 
@@ -102,7 +102,7 @@ describe('ReviewService (Review Core)', () => {
     expect(approved.used_at).toBeInstanceOf(Date);
 
     const auditCount = await pool.query(
-      "SELECT count(*)::int AS c FROM audit_log_entries WHERE tenant_id = $1 AND entity_id = $2",
+      "SELECT count(*)::int AS c FROM audit_logs WHERE tenant_id = $1 AND entity_id = $2",
       [c.tenantId, reviewRequest.id],
     );
     expect(auditCount.rows[0].c).toBe(2);
@@ -250,7 +250,7 @@ describe('ReviewService (Review Core)', () => {
       expiresAt: new Date(Date.now() + 60_000),
     });
 
-    await pool.query('DROP TABLE audit_log_entries');
+    await pool.query('DROP TABLE audit_logs');
 
     await expect(
       service.approveReviewRequest(c, {

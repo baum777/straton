@@ -5,7 +5,7 @@
 BEGIN;
 
 -- Append-only audit log (strict mode: writes must fail if audit insert fails).
-CREATE TABLE IF NOT EXISTS audit_log_entries (
+CREATE TABLE IF NOT EXISTS audit_logs (
   id uuid PRIMARY KEY,
   tenant_id uuid NOT NULL,
   actor_user_id uuid NOT NULL,
@@ -17,20 +17,20 @@ CREATE TABLE IF NOT EXISTS audit_log_entries (
 );
 
 -- Enforce append-only audit log (no UPDATE/DELETE).
-CREATE OR REPLACE FUNCTION audit_log_entries_immutable()
+CREATE OR REPLACE FUNCTION audit_logs_immutable()
 RETURNS trigger
 LANGUAGE plpgsql
 AS $$
 BEGIN
-  RAISE EXCEPTION 'audit_log_entries is append-only';
+  RAISE EXCEPTION 'audit_logs is append-only';
 END;
 $$;
 
-DROP TRIGGER IF EXISTS audit_log_entries_no_update ON audit_log_entries;
-CREATE TRIGGER audit_log_entries_no_update
-BEFORE UPDATE OR DELETE ON audit_log_entries
+DROP TRIGGER IF EXISTS audit_logs_no_update ON audit_logs;
+CREATE TRIGGER audit_logs_no_update
+BEFORE UPDATE OR DELETE ON audit_logs
 FOR EACH ROW
-EXECUTE FUNCTION audit_log_entries_immutable();
+EXECUTE FUNCTION audit_logs_immutable();
 
 -- Review Core (ReviewRequest + CommitToken)
 CREATE TABLE IF NOT EXISTS review_requests (

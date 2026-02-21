@@ -23,7 +23,7 @@ async function insertAuditLogEntry(
 
   await tx.query(
     `
-      INSERT INTO audit_log_entries (
+      INSERT INTO audit_logs (
         id,
         tenant_id,
         actor_user_id,
