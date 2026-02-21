@@ -66,9 +66,12 @@ export class ReviewService {
       ctx,
       {
         action: 'review_request.create',
-        entityType: input.entityType,
-        entityId: input.entityId,
-        meta: { reviewRequestId: id },
+        entityType: 'review_request',
+        entityId: id,
+        meta: {
+          targetEntityType: input.entityType,
+          targetEntityId: input.entityId,
+        },
       },
       async (tx) => {
         const res = await tx.query(
