@@ -40,3 +40,12 @@ Risiko: Niedrig (reine Dokumentationsaenderung ohne Laufzeiteffekt).
 Rollback: Commit revertieren oder den neuen README-Abschnitt und diesen Logeintrag entfernen.
 Tests/Verifikation: Dokumentinhalt gegen MASTER_GOVERNANCE, AGENTS.md und WORKFLOW auf Konsistenz geprueft; Markdown manuell verifiziert.
 ---
+
+Datum: 2026-02-21
+Autor/Agent: Cursor Composer
+Vorgang: Build Run #3 (Review Core) — ReviewRequest + CommitToken-Lifecycle implementiert (hash, expiry, single-use, payload-hash), atomische used_at-Updates, strict Audit-Transaktionen und Testcontainers-Integrationstests.
+Betroffene Dateien: packages/domain/src/{review,audit,policy,primitives}.ts, packages/{review,audit}/*, db/schema.sql, db/migrations/20260221_0001_review_core.sql, vitest.config.ts, docs/planning/2026-02-21-run-3-review-core.md, package-lock.json
+Risiko: Mittel (Sicherheits-/Integritätskritisch: Token-Replay/Expiry/Audit-Rollback).
+Rollback: Revert der Run-#3-Commits; DB: neue Tabellen `review_requests` und `audit_log_entries` droppen; ggf. Migration entfernen.
+Tests/Verifikation: `npm test` (Vitest) gruen; Review-Core Tests: success, replay, expiry, payload mismatch, parallel atomicity, audit failure rollback; Tenant-Isolation-Test enthalten.
+---
