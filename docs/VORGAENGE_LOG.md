@@ -62,3 +62,12 @@ Risiko: Niedrig (reine Dokumentationsaenderung ohne Laufzeiteffekt).
 Rollback: Letzten Commit revertieren oder die neue Datei entfernen und README/Logeintrag rueckgaengig machen.
 Tests/Verifikation: Inhalte gegen docs/RULES.md, AGENTS.md und MASTER_GOVERNANCE auf Konsistenz geprueft; Markdown-Struktur manuell verifiziert.
 ---
+
+Datum: 2026-02-21
+Autor/Agent: Cursor Cloud Agent
+Vorgang: README um einen operativen Abschnitt zur Nutzung der Docs-Blueprint-Spezifikation erweitert (Zweck, Umfang und Standardablauf fuer Doku-Aenderungen).
+Betroffene Dateien: README.md, docs/VORGAENGE_LOG.md
+Risiko: Niedrig (nur Dokumentation, keine Laufzeitwirkung).
+Rollback: Commit revertieren oder README/Logeintrag gezielt zuruecksetzen.
+Tests/Verifikation: Markdown-Inhalt manuell geprueft; Konsistenz mit docs/DOCS_BLUEPRINT_SPEC.md und docs/RULES.md abgeglichen.
+---
