@@ -1,6 +1,25 @@
 # straton
 strategy in motion
 
+## Produktlogik (Kurzbeschreibung)
+
+STRATON OfferFlow fuehrt Agenturen durch einen festen, reviewbaren Ablauf:
+
+1. Projekt anlegen
+2. Intake erfassen
+3. Scope-Entwurf erstellen
+4. Angebotsentwurf erstellen
+5. Review anfordern
+6. Review freigeben
+7. Angebot committen (nur mit gueltigem, einmal nutzbarem CommitToken)
+8. Angebot exportieren
+
+Leitplanken in v1:
+- Alle Business-Endpunkte sind JWT-geschuetzt.
+- Tenant-Kontext wird nur aus dem Token abgeleitet.
+- Jeder Write erzeugt einen append-only Audit-Log (strict mode: write fails bei audit-failure).
+- Keine parallelen Produkt- oder Schreibpfade ausserhalb von OfferFlow.
+
 ## Documentation Hierarchy
 
 | Document | Role |
