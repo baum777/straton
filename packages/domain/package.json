@@ -1,9 +1,9 @@
 {
-  "name": "@straton/policy",
+  "name": "@straton/domain",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "JWT auth + tenant RBAC",
+  "description": "Zod schemas (single source of truth)",
   "exports": {
     ".": "./src/index.ts"
   },
@@ -12,7 +12,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@straton/domain": "1.0.0",
     "zod": "^4.3.6"
   }
 }
+
