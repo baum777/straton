@@ -1,0 +1,17 @@
+{
+  "name": "@straton/audit",
+  "version": "0.0.1",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@straton/domain": "^0.0.1",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.10.9",
+    "vitest": "^1.2.1"
+  }
+}
