@@ -3,15 +3,13 @@ import { PostgreSqlContainer } from 'testcontainers';
 import { Pool } from 'pg';
 import crypto from 'node:crypto';
 import { readFile } from 'node:fs/promises';
-import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 
 import { ReviewService } from './review-service';
 import { ReviewError } from './errors';
 import { sha256Hex } from './hash';
 
-const schemaPath = fileURLToPath(
-  new URL('../../../../db/schema.sql', import.meta.url),
-);
+const schemaPath = path.resolve(process.cwd(), 'db', 'schema.sql');
 
 describe('ReviewService (Review Core)', () => {
   let container: PostgreSqlContainer;
@@ -32,8 +30,8 @@ describe('ReviewService (Review Core)', () => {
   });
 
   afterAll(async () => {
-    await pool.end();
-    await container.stop();
+    if (pool) await pool.end();
+    if (container) await container.stop();
   });
 
   beforeEach(async () => {
