@@ -107,11 +107,15 @@ db/
   schema.sql
 
 docs/
-  ARCHITECTURE.md
-  ARCHITECTURE_SOURCE_OF_TRUTH.md
+  RULES.md
   SYSTEM_PROMPT.md
   WORKFLOW.md
+  ARCHITECTURE_SOURCE_OF_TRUTH.md
+  VORGAENGE_LOG.md
+  architecture/
+    MASTER_GOVERNANCE.md
   ADR/
+  planning/
 ```
 
 ---

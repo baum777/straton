@@ -50,14 +50,17 @@ db/
   schema.sql
 
 docs/
-  ARCHITECTURE.md
+  RULES.md
+  SYSTEM_PROMPT.md
+  WORKFLOW.md
+  ARCHITECTURE_SOURCE_OF_TRUTH.md
+  VORGAENGE_LOG.md
+  architecture/
+    MASTER_GOVERNANCE.md
   ADR/
   planning/
 
-ops/
-  SYSTEM_PROMPT.md
-  WORKFLOW.md
-  AGENTS.md
+AGENTS.md              # (repository root)
 ```
 
 No additional product folders allowed in v1.
