@@ -49,3 +49,12 @@ Risiko: Mittel (Sicherheits-/Integritätskritisch: Token-Replay/Expiry/Audit-Rol
 Rollback: Revert der Run-#3-Commits; DB: neue Tabellen `review_requests` und `audit_log_entries` droppen; ggf. Migration entfernen.
 Tests/Verifikation: `npm test` (Vitest) gruen; Review-Core Tests: success, replay, expiry, payload mismatch, parallel atomicity, audit failure rollback; Tenant-Isolation-Test enthalten.
 ---
+
+Datum: 2026-02-21
+Autor/Agent: Cursor Composer
+Vorgang: Build Run #3.1 (Hygiene) — Lockfile/Tooling-Konsistenz: npm als kanonischer Package Manager; Test runner Klarheit (Vitest-only); Audit-Tabellenname auf `audit_logs` vereinheitlicht (Schema/Migration/Code/Tests); ungenutzte Jest-Konfig entfernt.
+Betroffene Dateien: package.json, README.md, db/schema.sql, db/migrations/20260221_0001_review_core.sql, packages/audit/src/with-audit-transaction.ts, packages/review/src/review-service.spec.ts, apps/api/test/jest-e2e.json (entfernt), docs/VORGAENGE_LOG.md
+Risiko: Niedrig bis Mittel (Schema-Namensangleichung; potenziell brechend für bestehende DB-Instanzen, falls bereits migriert).
+Rollback: Revert dieses Hygiene-Commits; falls DB bereits mit `audit_log_entries` existiert: Tabelle zurueck-umbenennen oder kompatible Rename-Migration ergaenzen.
+Tests/Verifikation: `npm test` gruen (Vitest + Testcontainers).
+---
