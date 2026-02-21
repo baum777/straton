@@ -9,6 +9,12 @@ Tests/Verifikation: Domain validation tests, API auth guard tests, RBAC role che
 ---
 
 Datum: 2026-02-21
+Autor/Agent: Cursor Composer
+Vorgang: Build Run #1.1 (JWT Hardening + Claim Validation)
+Betroffene Dateien: packages/policy/*, apps/api/*, docs/planning/run-1.1-jwt-hardening.md
+Risiko: Mittel (Sicherheitskritische JWT-Implementierung).
+Rollback: Revert policy/auth changes, restore mock token.
+Tests/Verifikation: E2E tests (8) – forged token, missing claim, expired, public routes.
 Autor/Agent: Cursor Composer (Alignment Run)
 Vorgang: Alignment Run — Dokumentationsstruktur vereinheitlicht, fehlende Ordner-Scaffolds erstellt. ops/ entfernt; docs/ als kanonischer Ort für System-Docs. MASTER_GOVERNANCE und ARCHITECTURE_SOURCE_OF_TRUTH angepasst. Neue Scaffolds: db/, db/migrations/, db/schema.sql, docs/ADR/, docs/planning/, packages/{policy,review,audit,ai}, apps/web. README um Doc-Hierarchie ergänzt.
 Betroffene Dateien: docs/architecture/MASTER_GOVERNANCE.md, docs/ARCHITECTURE_SOURCE_OF_TRUTH.md, README.md, docs/VORGAENGE_LOG.md, docs/ALIGNMENT_RUN_PLAN.md (neu), db/*, docs/ADR/, docs/planning/, packages/policy, packages/review, packages/audit, packages/ai, apps/web
