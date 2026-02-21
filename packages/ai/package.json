@@ -1,0 +1,8 @@
+{
+  "name": "@straton/ai",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "LLM adapters (draft-only, no autonomous actions)",
+  "scripts": { "build": "echo scaffold" }
+}
