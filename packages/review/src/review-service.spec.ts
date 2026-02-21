@@ -26,9 +26,7 @@ describe('ReviewService (Review Core)', () => {
         POSTGRES_USER: 'straton',
         POSTGRES_PASSWORD: 'straton',
       })
-      .withWaitStrategy(
-        Wait.forLogMessage('database system is ready to accept connections'),
-      )
+      .withWaitStrategy(Wait.forLogMessage('database system is ready to accept connections'))
       .start();
 
     pool = new Pool({
@@ -38,6 +36,21 @@ describe('ReviewService (Review Core)', () => {
       password: 'straton',
       database: 'straton_test',
     });
+
+    // Give Postgres a moment to accept TCP connections reliably.
+    let lastErr: unknown;
+    for (let i = 0; i < 40; i++) {
+      try {
+        await pool.query('SELECT 1');
+        lastErr = undefined;
+        break;
+      } catch (err) {
+        lastErr = err;
+        await new Promise((r) => setTimeout(r, 250));
+      }
+    }
+    if (lastErr) throw lastErr;
+
     await pool.query(schemaSql);
   });
 
