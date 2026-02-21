@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { PostgreSqlContainer } from 'testcontainers';
+import { GenericContainer, Wait, type StartedTestContainer } from 'testcontainers';
 import { Pool } from 'pg';
 import crypto from 'node:crypto';
 import { readFile } from 'node:fs/promises';
@@ -12,20 +12,32 @@ import { sha256Hex } from './hash';
 const schemaPath = path.resolve(process.cwd(), 'db', 'schema.sql');
 
 describe('ReviewService (Review Core)', () => {
-  let container: PostgreSqlContainer;
+  let container: StartedTestContainer;
   let pool: Pool;
   let schemaSql: string;
 
   beforeAll(async () => {
     schemaSql = await readFile(schemaPath, 'utf-8');
 
-    container = await new PostgreSqlContainer('postgres:16-alpine')
-      .withDatabase('straton_test')
-      .withUsername('straton')
-      .withPassword('straton')
+    container = await new GenericContainer('postgres:16-alpine')
+      .withExposedPorts(5432)
+      .withEnvironment({
+        POSTGRES_DB: 'straton_test',
+        POSTGRES_USER: 'straton',
+        POSTGRES_PASSWORD: 'straton',
+      })
+      .withWaitStrategy(
+        Wait.forLogMessage('database system is ready to accept connections'),
+      )
       .start();
 
-    pool = new Pool({ connectionString: container.getConnectionUri() });
+    pool = new Pool({
+      host: container.getHost(),
+      port: container.getMappedPort(5432),
+      user: 'straton',
+      password: 'straton',
+      database: 'straton_test',
+    });
     await pool.query(schemaSql);
   });
 
