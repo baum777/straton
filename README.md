@@ -7,6 +7,10 @@ strategy in motion
 |-------------|----------|--------------------------------------------------|
 | `JWT_SECRET`| Yes      | Secret for JWT signing/verification (min 32 chars for HS256). Set via env; no default in production. |
 | `PORT`      | No       | API server port (default: 3001).                 |
+
+## Package Manager
+
+This repository uses **npm** with `package-lock.json` for deterministic installs.
 ## Produktlogik (Kurzbeschreibung)
 
 STRATON OfferFlow fuehrt Agenturen durch einen festen, reviewbaren Ablauf:

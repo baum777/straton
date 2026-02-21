@@ -1,10 +1,8 @@
--- STRATON OfferFlow™ v1 — DB Contract
--- NOTE: Domain entities defined in packages/domain (Zod) are source of truth.
--- This schema must remain aligned 1:1 with the Zod contracts.
+-- Build Run #3: Review Core (ReviewRequest + CommitToken + Audit)
+-- Keep aligned 1:1 with packages/domain contracts.
 
 BEGIN;
 
--- Append-only audit log (strict mode: writes must fail if audit insert fails).
 CREATE TABLE IF NOT EXISTS audit_logs (
   id uuid PRIMARY KEY,
   tenant_id uuid NOT NULL,
@@ -16,7 +14,6 @@ CREATE TABLE IF NOT EXISTS audit_logs (
   meta jsonb NOT NULL DEFAULT '{}'::jsonb
 );
 
--- Enforce append-only audit log (no UPDATE/DELETE).
 CREATE OR REPLACE FUNCTION audit_logs_immutable()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -32,7 +29,6 @@ BEFORE UPDATE OR DELETE ON audit_logs
 FOR EACH ROW
 EXECUTE FUNCTION audit_logs_immutable();
 
--- Review Core (ReviewRequest + CommitToken)
 CREATE TABLE IF NOT EXISTS review_requests (
   id uuid PRIMARY KEY,
   tenant_id uuid NOT NULL,

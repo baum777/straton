@@ -4,5 +4,19 @@
   "private": true,
   "type": "module",
   "description": "CommitToken + ReviewGate",
-  "scripts": { "build": "echo scaffold" }
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "echo scaffold",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@straton/audit": "1.0.0",
+    "@straton/domain": "1.0.0",
+    "pg": "^8.18.0"
+  },
+  "devDependencies": {
+    "testcontainers": "^11.12.0"
+  }
 }
