@@ -25,3 +25,12 @@ Risiko: Niedrig (reine Dokumentationsaenderung ohne Laufzeiteffekt).
 Rollback: Letzten Commit revertieren oder die neue Datei entfernen und README/Logeintrag rueckgaengig machen.
 Tests/Verifikation: Inhalte gegen docs/RULES.md, AGENTS.md und MASTER_GOVERNANCE auf Konsistenz geprueft; Markdown-Struktur manuell verifiziert.
 ---
+
+Datum: 2026-02-21
+Autor/Agent: Cursor Cloud Agent
+Vorgang: README um eine kurze Produktlogik-Beschreibung von STRATON OfferFlow ergaenzt (Ablauf + Sicherheits-/Governance-Leitplanken in kompakter Form).
+Betroffene Dateien: README.md, docs/VORGAENGE_LOG.md
+Risiko: Niedrig (reine Dokumentationsaenderung ohne Laufzeiteffekt).
+Rollback: Commit revertieren oder den neuen README-Abschnitt und diesen Logeintrag entfernen.
+Tests/Verifikation: Dokumentinhalt gegen MASTER_GOVERNANCE, AGENTS.md und WORKFLOW auf Konsistenz geprueft; Markdown manuell verifiziert.
+---
