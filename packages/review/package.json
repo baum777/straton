@@ -1,0 +1,8 @@
+{
+  "name": "@straton/review",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "CommitToken + ReviewGate",
+  "scripts": { "build": "echo scaffold" }
+}

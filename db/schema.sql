@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -- Extensions
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
@@ -127,3 +128,8 @@ DROP TRIGGER IF EXISTS audit_logs_append_only_trigger ON audit_logs;
 CREATE TRIGGER audit_logs_append_only_trigger
   BEFORE UPDATE OR DELETE ON audit_logs
   FOR EACH ROW EXECUTE FUNCTION audit_logs_append_only_block();
+=======
+-- STRATON OfferFlow™ v1 — Schema placeholder
+-- Domain entities defined in packages/domain (Zod) are source of truth.
+-- DB schema must match domain 1:1. No drift allowed.
+>>>>>>> origin/main

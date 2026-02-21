@@ -1,5 +1,6 @@
 {
   "name": "@straton/audit",
+<<<<<<< HEAD
   "version": "0.0.1",
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -14,4 +15,11 @@
     "@types/pg": "^8.10.9",
     "vitest": "^1.2.1"
   }
+=======
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Append-only audit logging",
+  "scripts": { "build": "echo scaffold" }
+>>>>>>> origin/main
 }

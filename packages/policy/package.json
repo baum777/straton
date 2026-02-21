@@ -1,5 +1,6 @@
 {
   "name": "@straton/policy",
+<<<<<<< HEAD
   "version": "0.0.1",
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -18,4 +19,11 @@
   "devDependencies": {
     "vitest": "^1.2.1"
   }
+=======
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "JWT auth + tenant RBAC",
+  "scripts": { "build": "echo scaffold" }
+>>>>>>> origin/main
 }
