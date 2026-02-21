@@ -1,5 +1,5 @@
 {
-  "name": "@straton/policy",
+  "name": "@straton/domain",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -13,7 +13,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@straton/domain": "file:../domain"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "typescript": "^5.7.2",

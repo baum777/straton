@@ -53,3 +53,12 @@ Risiko: Niedrig (Struktur- und Dokuänderungen; keine Laufzeitlogik).
 Rollback: Commit revertieren oder neue Dateien/Ordner entfernen.
 Tests/Verifikation: rg "ops/" in .md → 0 Treffer; Ordnerstruktur verifiziert; npm ls prüft Workspaces.
 ---
+
+Datum: 2026-02-21
+Autor/Agent: Cursor Composer (Build Run #1)
+Vorgang: Build Run #1 — Domain Contract, DB Schema, Auth/RBAC Skeleton. Vollständige Zod-Schemas in packages/domain (Tenant, User, Membership, Project, Intake, Scope, Offer, ReviewRequest, AuditLog). db/schema.sql + Migration 001. packages/policy: RequestContext, RBAC-Helfer. NestJS API: JWT global, /health + /auth/login public, /auth/me protected. Tests: Domain-Validation, Auth-Guard, RBAC, API E2E.
+Betroffene Dateien: packages/domain/*, packages/policy/*, apps/api/*, db/schema.sql, db/migrations/001_initial_schema.sql, docs/planning/2026-02-21-build-run-1-domain-db-auth.md
+Risiko: Mittel (Auth-Core; JWT-Enforcement muss in Produktion mit echtem Secret).
+Rollback: Migration rückgängig; Packages/API-Änderungen revertieren.
+Tests/Verifikation: npm run test -w packages/domain, npm run test -w packages/policy, npm run test -w apps/api — alle grün.
+---

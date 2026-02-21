@@ -1,16 +1,13 @@
--- STRATON OfferFlow™ v1 — Schema (1:1 with packages/domain Zod)
--- No drift allowed.
+-- STRATON OfferFlow™ v1 — Initial schema migration
+-- Matches db/schema.sql (1:1 with packages/domain Zod)
 
--- Extensions
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
--- Enums (must match domain enums)
 CREATE TYPE role_enum AS ENUM ('owner', 'admin', 'operator', 'reviewer', 'viewer');
 CREATE TYPE project_status_enum AS ENUM ('draft', 'active', 'closed');
 CREATE TYPE offer_status_enum AS ENUM ('draft', 'in_review', 'approved', 'sent', 'archived');
 CREATE TYPE review_request_status_enum AS ENUM ('pending', 'approved', 'rejected', 'expired');
 
--- Tables
 CREATE TABLE tenants (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name TEXT NOT NULL,
