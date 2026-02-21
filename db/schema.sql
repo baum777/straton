@@ -1,0 +1,3 @@
+-- STRATON OfferFlow™ v1 — Schema placeholder
+-- Domain entities defined in packages/domain (Zod) are source of truth.
+-- DB schema must match domain 1:1. No drift allowed.

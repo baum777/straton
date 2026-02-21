@@ -1,0 +1,8 @@
+{
+  "name": "@straton/audit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Append-only audit logging",
+  "scripts": { "build": "echo scaffold" }
+}
