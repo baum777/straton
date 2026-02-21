@@ -16,3 +16,12 @@ Risiko: Mittel (Sicherheitskritische JWT-Implementierung).
 Rollback: Revert policy/auth changes, restore mock token.
 Tests/Verifikation: E2E tests (8) – forged token, missing claim, expired, public routes.
 ---
+
+Datum: 2026-02-21
+Autor/Agent: Cursor Composer
+Vorgang: Build Run #2 (Audit Strict Core)
+Betroffene Dateien: packages/domain/*, packages/audit/*, db/*, apps/api/src/infra/*
+Risiko: Mittel (Audit-Infrastruktur, Transaktions-Enforcement).
+Rollback: Revert packages/audit, apps/api infra, db; Migration 0002 rückgängig.
+Tests/Verifikation: Jest (Strict-Mode rollback, Append-only Trigger), Vitest (append-only package).
+---
